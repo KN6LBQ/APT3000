@@ -52,8 +52,8 @@ window.onload = function() {
 				document.getElementById('spinner').style.visibility='hidden';
 			}else{
 				//rectification
-				for(var c = 0; c<wavFile.dataSamples.length;c++){
-					wavFile.dataSamples[c] = Math.abs(wavFile.dataSamples[c]);
+				for(var c = 0; c<wav.prototype.getSamples.length;c++){
+					wav.prototype.getSamples[c] = Math.abs(wav.prototype.getSamples[c]);
 				}
 				console.log("rectified");
 				filterSamples();
@@ -64,9 +64,9 @@ window.onload = function() {
 
 function filterSamples(){
 	//convert to Float32s
-	f32samples = new Float32Array(wavFile.dataSamples.length);
-	for(var i = 0; i < wavFile.dataSamples.length; i++){
-		f32samples[i] = wavFile.dataSamples[i]/32768;
+	f32samples = new Float32Array(wav.prototype.getSamples.length);
+	for(var i = 0; i < wav.prototype.getSamples.length; i++){
+		f32samples[i] = wav.prototype.getSamples[i]/32768;
 	}
 	
 	filter.loadSamples(f32samples);
@@ -123,7 +123,7 @@ function convolveWithSync(start,range){
 
 function updateChart(){
 	var data = {
-		labels:wavFile.dataSamples.subarray(lower,lower+range),
+		labels:wav.prototype.getSamples.subarray(lower,lower+range),
 		datasets: [
 			{
 				label: "1040Hz",
